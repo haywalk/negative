@@ -1,4 +1,0 @@
-#!/bin/sh
-DIRECTORY=`dirname $0`
-
-java -jar $DIRECTORY/negative.jar $1 $2
