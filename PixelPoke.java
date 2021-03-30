@@ -12,8 +12,8 @@ public class PixelPoke {
 		// Create variables to store names of input and output files
 		String inputFileName = "";
 		String outputFileName = "";
-		
-		// See what was passed in as a command line argument or piped
+
+		// Get filename from arguments
 		if(args.length == 2) {
 			// If user specified an input file and output file, use those
 			inputFileName = args[0];
@@ -23,23 +23,7 @@ public class PixelPoke {
 			inputFileName = args[0];
 			outputFileName = inputFileName;
 		} else {
-			// If no arguments given, take filename from pipeline
-			BufferedReader pipeInput = new BufferedReader(new InputStreamReader(System.in));
-			String[] pipeArgs = pipeInput.readLine().split(" ");
-			// Use variables depending on input length
-			switch(pipeArgs.length){
-				case 1: 
-					inputFileName = pipeArgs[0];
-					outputFileName = inputFileName;
-					break;
-				case 2:
-					inputFileName = pipeArgs[0];
-					outputFileName = pipeArgs[1];
-					break;
-				default:
-					System.out.println("Invalid arguments\nUsage: negative [inputfile.jpg] [outputfile.jpg]");
-					System.exit(1);
-			}
+			inputError();
 		}
 		
 		// Create input and output files
@@ -53,8 +37,7 @@ public class PixelPoke {
 		try {
 			img = ImageIO.read(inputFile);
 		} catch(IOException e) {
-			System.out.println("Invalid arguments\nUsage: negative [inputfile.jpg] [outputfile.jpg]");
-			System.exit(1);
+			inputError();
 		}
 		
 		// Get the dimensions of the image
@@ -72,5 +55,11 @@ public class PixelPoke {
 		
 		// Write the modified image to the output file
 		ImageIO.write(img, "jpg", outputFile);
+	}
+	
+	static void inputError() {
+		// Handles any input errors
+		System.out.println("Invalid arguments\nUsage: negative [inputfile.jpg] [outputfile.jpg]");
+		System.exit(1);
 	}
 }
