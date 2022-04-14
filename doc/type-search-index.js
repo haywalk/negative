@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"<Unnamed>","l":"CommandLineImageIOHandler"},{"p":"<Unnamed>","l":"InvertedBufferedImage"},{"p":"<Unnamed>","l":"PixelPoke"}];updateSearchResults();
